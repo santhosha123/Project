@@ -26,24 +26,31 @@ const schema=new mongoose.Schema(
             type:Number,
             default:60
         },
-        date:
+        landing_date:
         {
-            type:String,
+            type:Date,
             required:true
         },
-        arrival_time:
+        landing_time:
         {
-            type:String,
+            type:Date,
+            required:true
+        },
+        departure_date:
+        {
+            type:Date,
             required:true
         },
         departure_time:
         {
-            type:String,
+            type:Date,
             required:true
         },
-        passenger:
+        price:
         {
-            type:[]
+            type:Number,
+            required:true
+
         }
     }
 )

@@ -3,10 +3,15 @@ const flightmodel = require('../database/Flightmodel');
 const addflight = async (req, res) => {
   try {
     console.log(req.body)
-    const {flight_no,flight_name,start_location,destination_location,availableseats,arrival_time,date,departure_time} = req.body;
+    var {flight_no,flight_name,start_location,destination_location,availableseats,landing_date,landing_time,departure_date,departure_time,price} = req.body;
+    departure_date=new Date(departure_date)
+    departure_time=new Date(departure_date)
+
+    landing_date=new Date(landing_date)
+    landing_time=new Date(landing_date)
 
     // validate input
-    if (!flight_no || !flight_name || !date || !departure_time) {
+    if (!flight_no || !flight_name || !departure_date || !departure_time) {
       return res.status(400).json({ message: 'Missing required fields' });
     }
 
@@ -17,9 +22,11 @@ const addflight = async (req, res) => {
       start_location,
       destination_location,
       availableseats,
-      arrival_time,
+      landing_date,
+      landing_time,
+      departure_date,
       departure_time,
-      date,
+      price
     });
 
     // save the new flight object to the database
