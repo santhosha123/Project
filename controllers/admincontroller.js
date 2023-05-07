@@ -1,5 +1,18 @@
 const flightmodel = require('../database/Flightmodel');
 
+const getallflights=async(req,res)=>
+{
+  try{
+    const result=await flightmodel.find({})
+    console.log(result)
+    res.status(200).send(result)
+  }
+  catch (error) 
+  {
+    console.error(error);
+    return res.status(500).json({ message: 'Server error' });
+  }
+}
 const addflight = async (req, res) => {
   try {
     console.log(req.body)
@@ -55,4 +68,5 @@ const deleteflight=async(req,res)=>
 }
 
 module.exports = { addflight,
-deleteflight };
+deleteflight,
+getallflights };
