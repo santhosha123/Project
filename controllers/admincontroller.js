@@ -124,9 +124,21 @@ const patchflight = async(req,res)=>{
     
   }
 }
+const adminlogin= (req,res)=>
+{
+  if(req.body.email=="santhosha.20cse@kongu.edu" && req.body.password=="12345678")
+  {
+    res.status(200).send("Success")
+  }
+  else
+  {
+    res.status(401).send("InvalidUser")
+  }
+}
 
 module.exports = { addflight,
 deleteflight,
 getallflights ,
 getflights,
-patchflight};
+patchflight,
+adminlogin};
