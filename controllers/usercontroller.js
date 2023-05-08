@@ -4,6 +4,7 @@ const getflight=async(req,res)=>
 {
     try
     {
+        console.log(req.query)
         // Get the current time
         var currenttime = new Date(req.query.departure_date);
        // console.log(currenttime)
@@ -11,8 +12,7 @@ const getflight=async(req,res)=>
         maxtime.setHours(maxtime.getHours()+1);
         //console.log(maxtime)
      const result=await flightmodel.find({ departure_time: { $gte: currenttime, $lte: maxtime } });
-    console.log(result)
-        res.send("");
+        res.status(200).send(result);
     
     //await flightmodel.find({departure_date:req.query.departure_date,departure_time:req.query.departure_time})
 
@@ -28,6 +28,7 @@ const booktickets=async(req,res)=>
     const{booked_date,no_of_tickets,price,user_id,flight_id}=req.body
     try
     {
+        console.log(req.body)
         const result=await flightmodel.findById({_id:flight_id})
         if(result.availableseats>=no_of_tickets)
         {
@@ -61,8 +62,8 @@ const mybooking=async(req,res)=>
     {
        const result= await bookingmodel.find({user_id:req.query.user_id})
        //const flight_details=await flightmodel.findById({_id:result.flight_id})
-       console.log(result)
-       //res.status(200).json({booking_details:result},{flight_details:flight_details.flight_name})
+       //console.log(result)
+       res.status(200).json(result)
     }
     catch(error)
     {

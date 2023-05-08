@@ -4,7 +4,8 @@ const schema=new mongoose.Schema(
         booked_date:
         {
             type:Date,
-            required:true
+            required:true,
+            default:new Date()
         },
        no_of_tickets:
         {
